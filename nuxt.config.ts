@@ -1,11 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
-  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  compatibilityDate: '2024-12-27',
 
   typescript: {
     typeCheck: true,
+  },
+  build: {
+    transpile: ['element-plus'], // element-plus의 컴포넌트를 transpile
   },
   components: [
     {
@@ -13,7 +16,15 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  plugins: [
+    { src: '~/plugins/element-plus.js', mode: 'client' },
+    { src: '~/plugins/dayjs.js', mode: 'client' },
+  ],
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['~/assets/css/tailwind.css', '~/assets/css/globals.css'],
-  plugins: ['~/plugins/element-plus.js'],
+
+  css: [
+    '~/assets/css/tailwind.css',
+    '~/assets/css/globals.css',
+    'element-plus/dist/index.css',
+  ],
 });
