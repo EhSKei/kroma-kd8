@@ -1,7 +1,8 @@
 <template>
-  <div class="">index</div>
+  <div class="">
+    <ProfileBox />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
-
 <style scoped></style>

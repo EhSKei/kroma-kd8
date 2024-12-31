@@ -12,41 +12,29 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'vue'],
   extends: [
-    'eslint:recommended', // ESLint에서 권장 규칙 (eslint)
-    'plugin:nuxt/recommended', // Nuxt.js 권장 규칙 (eslint-plugin-nuxt)
-    'plugin:vue/recommended', // Vue.js 권장 규칙 (eslint-plugin-vue)
-    'plugin:@typescript-eslint/recommended', // TypeScript ESLint 규칙 (@typescript-eslint/eslint-plugin)
-    '@nuxtjs/eslint-config-typescript', //  Nuxt.js 프로젝트에서 TypeScript와 함께 사용되는 ESLint 규칙 (@nuxtjs/eslint-config-typescript)
-    'plugin:prettier/recommended', // ESLint, Prettier 충돌방지 (eslint-config-prettier, eslint-plugin-prettier)
+    'eslint:recommended', // ESLint에서 권장 규칙
+    'plugin:vue/vue3-recommended', // Vue.js 3 권장 규칙
+    'plugin:nuxt/recommended', // Nuxt.js 권장 규칙
+    '@nuxtjs/eslint-config-typescript', // Nuxt.js 프로젝트에서 TypeScript와 함께 사용되는 ESLint 규칙
+    'plugin:prettier/recommended', // ESLint, Prettier 충돌 방지
   ],
   rules: {
+    // `console` 사용을 허용 (디버깅에 유용)
     'no-console': 'off',
+
+    // Vue의 self-closing 규칙 (component는 self-closing을 권장)
     'vue/html-self-closing': [
       'warn',
       {
         html: {
-          void: 'always',
-          normal: 'never',
-          component: 'always',
+          void: 'always', // void 태그는 항상 self-closing
+          normal: 'never', // 일반 HTML 태그는 self-closing 하지 않음
+          component: 'always', // Vue 컴포넌트 태그는 항상 self-closing
         },
         svg: 'always',
         math: 'always',
       },
     ],
-    'prettier/prettier': [
-      'error',
-      {
-        arrowSpacing: ['error', { before: true, after: true }],
-        singleQuote: true,
-        semi: true,
-        useTabs: false,
-        tabWidth: 2,
-        trailingComma: 'all',
-        printWidth: 80,
-        bracketSpacing: true,
-        arrowParens: 'always',
-        endOfLine: 'auto',
-      },
-    ],
+    'prettier/prettier': 'off',
   },
 };

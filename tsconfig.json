@@ -4,7 +4,11 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".", // 프로젝트 루트 경로 설정
+    "paths": {
+      "@/*": ["./*"] // 이 설정을 추가하여 자동 임포트 경로 지정
+    }
   },
   "include": [
     "nuxt.config.ts",

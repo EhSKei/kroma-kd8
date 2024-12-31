@@ -4,10 +4,7 @@
     "source.fixAll.eslint": "explicit"
   },
   "editor.tabSize": 2,
-  "cSpell.words": [
-    "Kroma",
-    "Nuxt"
-  ],
+  "cSpell.words": ["Kroma", "Nuxt"],
   "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
   "files.associations": {
     "*.css": "tailwindcss"
@@ -21,5 +18,7 @@
   "tailwindCSS.experimental.classRegex": [
     "class\\s*=\\s*\"([^\"]*)\"",
     "class:\\s*`([^`]*)`"
-  ]
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
