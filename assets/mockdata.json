@@ -1,0 +1,39 @@
+{
+  "team": "Creative 1 Team",
+  "projects": [
+    [
+      {
+        "name": "사랑의열매",
+        "programms": [
+          {
+            "name": "열매가 알고 잡다",
+            "members": ["문혜성", "박회준", "안도연"],
+            "tasks": [
+              {
+                "members": "문혜성",
+                "name": "미팅",
+                "startDate": "2024/12/12",
+                "endDate": "2024/12/31",
+                "category": "meeting"
+              },
+              {
+                "members": "박회준",
+                "name": "미팅",
+                "startDate": "2024/12/12",
+                "endDate": "2024/12/31",
+                "category": "meeting"
+              },
+              {
+                "members": "ALL",
+                "name": "미팅",
+                "startDate": "2024/12/12",
+                "endDate": "2024/12/31",
+                "category": "meeting"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ]
+}

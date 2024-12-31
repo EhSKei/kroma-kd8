@@ -7,23 +7,32 @@
         <thead>
           <tr class="bg-gray-200">
             <th
-              rowspan="2"
+              rowspan="3"
               class="w-32 border border-gray-300 p-2 text-gray-700"
             >
               <div class="flex items-center justify-center gap-2">
                 <span>날짜</span>
-                <button @click="moveDates(-20)">
-                  <ChevronUpIcon class="size-5" />
-                </button>
-                <button @click="moveDates(20)">
-                  <ChevronDownIcon class="size-5" />
-                </button>
+                <div class="flex flex-col">
+                  <button @click="moveDates(-20)">
+                    <ChevronUpIcon class="size-5" />
+                  </button>
+                  <button @click="moveDates(20)">
+                    <ChevronDownIcon class="size-5" />
+                  </button>
+                </div>
               </div>
             </th>
             <th
               v-for="(project, index) in projects"
               :key="index"
-              :colspan="project.subProjects ? project.subProjects.length : 1"
+              :colspan="
+                project.subProjects
+                  ? project.subProjects.reduce(
+                      (sum, subProject) => sum + subProject.members.length,
+                      0,
+                    )
+                  : 1
+              "
               class="border border-gray-300 p-2 text-gray-700"
             >
               {{ project.project }}
@@ -33,19 +42,31 @@
             <th
               v-for="(subProject, index) in flattenedProjects"
               :key="index"
+              :colspan="subProject.members.length"
               class="border border-gray-300 p-2 text-gray-700"
             >
-              <div class="flex flex-col items-center gap-1">
-                <span>{{ subProject.name }}</span>
-                <div class="flex gap-1">
-                  <NameLable
-                    v-for="member in subProject.members"
-                    :key="member"
-                    :name="member"
-                  />
-                </div>
-              </div>
+              {{ subProject.name }}
             </th>
+          </tr>
+          <tr class="bg-gray-200">
+            <template
+              v-for="(subProject, index) in flattenedProjects"
+              :key="index"
+            >
+              <th
+                v-for="(member, memberIndex) in subProject.members"
+                :key="memberIndex"
+                class="border border-gray-300 p-2 text-gray-700"
+              >
+                {{ member }}
+              </th>
+              <th
+                v-if="subProject.members.length === 0"
+                class="border border-gray-300 p-2 text-gray-700"
+              >
+                -
+              </th>
+            </template>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +79,14 @@
               {{ formatDate(date) }}
             </th>
             <td
-              v-for="(task, colIndex) in getTasksForDate(date)"
+              v-for="(task, colIndex) in flattenedProjects
+                .map((subProject) => subProject.members.length)
+                .reduce<null[]>(
+                  (acc, length) =>
+                    acc.concat(Array.from({ length }, () => null)),
+                  [],
+                )
+                .map((_, index) => getTasksForDate(date)[index])"
               :key="colIndex"
               class="border border-gray-300 p-2 text-center"
             >
@@ -78,7 +106,7 @@ import { computed, ref } from 'vue';
 // 데이터 타입 정의
 type Task = {
   date_start: string;
-  date_end: string | null;
+  date_end: string;
   name: string;
   type: string;
 };
@@ -128,7 +156,7 @@ const backendData: { projects: Project[] } = {
           tasks: [
             {
               date_start: '2024-01-02',
-              date_end: null,
+              date_end: '2024-01-02',
               name: '스토리보드 작성',
               type: 'task',
             },
@@ -155,7 +183,9 @@ const visibleDates = computed(() => {
 });
 
 const moveDates = (offset: number) => {
-  startDate.value.setDate(startDate.value.getDate() + offset);
+  startDate.value = new Date(
+    startDate.value.setDate(startDate.value.getDate() + offset),
+  );
 };
 
 const formatDate = (date: Date) => {
@@ -184,14 +214,13 @@ const flattenedProjects = computed<SubProject[]>(() =>
 );
 
 // 특정 날짜에 해당하는 태스크 가져오기
-const getTasksForDate = (date: Date): (Task | undefined)[] => {
+const getTasksForDate = (date: Date): (Task | null)[] => {
   const dateString = date.toISOString().split('T')[0];
-  return flattenedProjects.value.map((subProject) =>
-    subProject.tasks.find(
-      (task) =>
-        task.date_start <= dateString &&
-        (!task.date_end || task.date_end >= dateString),
-    ),
+  return flattenedProjects.value.map(
+    (subProject) =>
+      subProject.tasks.find(
+        (task) => task.date_start <= dateString && task.date_end >= dateString,
+      ) ?? null, // task가 없으면 null 반환
   );
 };
 </script>

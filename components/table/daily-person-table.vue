@@ -19,36 +19,20 @@
                 </button>
               </div>
             </th>
-            <th colspan="3" class="border border-gray-300 p-2 text-gray-700">
-              사랑의 열매
-            </th>
-            <th colspan="1" class="border border-gray-300 p-2 text-gray-700">
-              NH육튜브
-            </th>
-            <th colspan="1" class="border border-gray-300 p-2 text-gray-700">
-              정관장
-            </th>
-            <th colspan="1" class="border border-gray-300 p-2 text-gray-700">
-              배달의 민족
-            </th>
+            <th class="border border-gray-300 p-2 text-gray-700">오다은</th>
+            <th class="border border-gray-300 p-2 text-gray-700">이유진</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
+            <th class="border border-gray-300 p-2 text-gray-700">이유진</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
           </tr>
           <tr class="bg-gray-200">
-            <th class="border border-gray-300 p-2 text-gray-700">
-              열매가알고잡다
-            </th>
-            <th class="border border-gray-300 p-2 text-gray-700">열매니저</th>
-            <th class="border border-gray-300 p-2 text-gray-700">
-              웹드라마 미생
-            </th>
-            <th class="border border-gray-300 p-2 text-gray-700">
-              머슴아 말왕
-            </th>
-            <th class="border border-gray-300 p-2 text-gray-700">
-              황희찬의 놀러와
-            </th>
-            <th class="border border-gray-300 p-2 text-gray-700">
-              송년회 영상
-            </th>
+            <th class="border border-gray-300 p-2 text-gray-700">오다은</th>
+            <th class="border border-gray-300 p-2 text-gray-700">이유진</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
+            <th class="border border-gray-300 p-2 text-gray-700">이유진</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
+            <th class="border border-gray-300 p-2 text-gray-700">양용혁</th>
           </tr>
         </thead>
         <tbody>
