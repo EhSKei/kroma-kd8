@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="text-3xl">{{ teamLabel }}</h1>
     <component :is="currentTable" />
   </div>
 </template>
@@ -12,6 +13,20 @@ import WeeklyProjectTable from '@/components/table/weekly-project-table.vue';
 
 const route = useRoute();
 const router = useRouter();
+
+const teamPathMap: Record<string, string> = {
+  management: '경영기획팀',
+  team1: '1팀',
+  team2: '2팀',
+  team3: '3팀',
+  'design-edit': '에디팀',
+};
+
+// 현재 경로의 팀 이름 가져오기
+const teamLabel = computed(() => {
+  const team = route.params.team as string; // URL 파라미터에서 team 값 가져오기
+  return teamPathMap[team] || '경영기획팀'; // 매핑된 이름 반환, 없으면 기본값
+});
 
 // tableMap의 키를 타입으로 정의
 const tableMap = {

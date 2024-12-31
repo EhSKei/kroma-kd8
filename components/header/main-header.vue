@@ -53,7 +53,6 @@ const selectedType = ref<string>((route.query.type as string) || 'project');
 const selectedPeriod = ref<string>((route.query.period as string) || 'daily');
 
 // URL 변경 감지 및 동기화
-// URL 변경 감지 및 동기화
 watch(
   () => route.params.team,
   (newTeam) => {
